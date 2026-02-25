@@ -144,7 +144,7 @@ export function AdminDashboard() {
                                             {['IT', 'Business', 'Engineering', 'Medical', 'Arts'].map(c => <option key={c} value={c}>{c}</option>)}
                                         </select>
                                     </div>
-                                    <Input label="Average Salary" name="averageSalary" required value={formData.averageSalary} onChange={handleInputChange} placeholder="e.g. $80,000" />
+                                    <Input label="Average Salary" name="averageSalary" required value={formData.averageSalary} onChange={handleInputChange} placeholder="e.g. ₹80,000" />
                                     <Input label="Growth Scope" name="growthScope" required value={formData.growthScope} onChange={handleInputChange} placeholder="e.g. High (15%)" />
                                 </div>
                                 <Input label="Skills Required (comma separated)" name="skillsRequired" required value={formData.skillsRequired} onChange={handleInputChange} placeholder="React, Node.js, CSS" />

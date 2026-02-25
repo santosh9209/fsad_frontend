@@ -5,7 +5,7 @@ export const careers = [
         category: 'IT',
         description: 'Design, develop, and maintain software applications and systems.',
         skillsRequired: ['JavaScript', 'React', 'Node.js', 'Problem Solving'],
-        averageSalary: '$110,000',
+        averageSalary: '₹80,000',
         growthScope: 'Excellent (22% projected growth)'
     },
     {
@@ -14,7 +14,7 @@ export const careers = [
         category: 'IT',
         description: 'Analyze complex data to help organizations make better decisions.',
         skillsRequired: ['Python', 'Machine Learning', 'SQL', 'Statistics'],
-        averageSalary: '$120,000',
+        averageSalary: '₹90,000',
         growthScope: 'Very High (35% projected growth)'
     },
     {
@@ -23,7 +23,7 @@ export const careers = [
         category: 'Medical',
         description: 'Provide and coordinate patient care, educate patients, and offer advice.',
         skillsRequired: ['Patient Care', 'CPR', 'Communication', 'Empathy'],
-        averageSalary: '$75,000',
+        averageSalary: '₹50,000',
         growthScope: 'High (12% projected growth)'
     },
     {
@@ -32,7 +32,7 @@ export const careers = [
         category: 'Business',
         description: 'Guide businesses and individuals in investment decisions.',
         skillsRequired: ['Financial Modeling', 'Excel', 'Accounting', 'Analysis'],
-        averageSalary: '$85,000',
+        averageSalary: '₹60,000',
         growthScope: 'Moderate (6% projected growth)'
     },
     {
@@ -41,7 +41,7 @@ export const careers = [
         category: 'Arts',
         description: 'Create visual concepts to communicate ideas that inspire and inform.',
         skillsRequired: ['Adobe Creative Suite', 'Typography', 'Creativity', 'UI/UX'],
-        averageSalary: '$55,000',
+        averageSalary: '₹40,000',
         growthScope: 'Moderate (3% projected growth)'
     },
     {
@@ -50,7 +50,7 @@ export const careers = [
         category: 'Engineering',
         description: 'Design, build, and supervise infrastructure projects and systems.',
         skillsRequired: ['AutoCAD', 'Project Management', 'Mathematics', 'Physics'],
-        averageSalary: '$90,000',
+        averageSalary: '₹65,000',
         growthScope: 'Good (8% projected growth)'
     },
     {
@@ -59,7 +59,7 @@ export const careers = [
         category: 'Business',
         description: 'Plan, direct, or coordinate marketing policies and programs.',
         skillsRequired: ['Digital Marketing', 'SEO', 'Communication', 'Strategy'],
-        averageSalary: '$135,000',
+        averageSalary: '₹95,000',
         growthScope: 'High (10% projected growth)'
     },
     {
@@ -68,7 +68,7 @@ export const careers = [
         category: 'IT',
         description: 'Create user-friendly interfaces and improve user experiences for digital products.',
         skillsRequired: ['Figma', 'Prototyping', 'User Research', 'Wireframing'],
-        averageSalary: '$95,000',
+        averageSalary: '₹70,000',
         growthScope: 'Very High (16% projected growth)'
     },
     {
@@ -77,7 +77,7 @@ export const careers = [
         category: 'Medical',
         description: 'Help injured or ill people improve movement and manage pain.',
         skillsRequired: ['Anatomy', 'Patient Experience', 'Rehabilitation', 'Communication'],
-        averageSalary: '$97,000',
+        averageSalary: '₹72,000',
         growthScope: 'Excellent (15% projected growth)'
     },
     {
@@ -86,7 +86,7 @@ export const careers = [
         category: 'Engineering',
         description: 'Plan and design structures, such as private residences, office buildings, and theaters.',
         skillsRequired: ['Designing', 'AutoCAD', 'Creative Problem Solving', 'Model Building'],
-        averageSalary: '$82,000',
+        averageSalary: '₹62,000',
         growthScope: 'Moderate (3% projected growth)'
     }
 ];

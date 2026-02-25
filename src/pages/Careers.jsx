@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { api } from '../services/api';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
 import { Input } from '../components/ui/Input';
-import { Search, MapPin, Target, TrendingUp, DollarSign } from 'lucide-react';
+import { Search, MapPin, Target, TrendingUp, IndianRupee } from 'lucide-react';
 
 const CATEGORIES = ['All', 'IT', 'Business', 'Engineering', 'Medical', 'Arts'];
 
@@ -55,8 +55,8 @@ export function Careers() {
                         key={category}
                         onClick={() => setActiveCategory(category)}
                         className={`whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium transition-colors ${activeCategory === category
-                                ? 'bg-primary-600 text-white shadow-sm'
-                                : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
+                            ? 'bg-primary-600 text-white shadow-sm'
+                            : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
                             }`}
                     >
                         {category}
@@ -93,7 +93,7 @@ export function Careers() {
                                 </div>
                                 <div className="grid grid-cols-2 gap-y-2 text-sm pt-4 border-t border-slate-100 mt-auto">
                                     <div className="flex items-center text-slate-700">
-                                        <DollarSign className="h-4 w-4 mr-1.5 text-green-600" />
+                                        <IndianRupee className="h-4 w-4 mr-1.5 text-green-600" />
                                         <span className="font-medium">{career.averageSalary}</span>
                                     </div>
                                     <div className="flex items-center text-slate-700">

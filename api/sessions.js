@@ -1,5 +1,5 @@
 import { sql } from '@vercel/postgres';
-import { mockSessions } from '../src/services/mockData';
+import { mockSessions } from '../src/services/mockData.js';
 
 export default async function handler(req, res) {
     if (!process.env.POSTGRES_URL) {

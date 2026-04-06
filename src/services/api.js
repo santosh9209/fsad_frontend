@@ -1,30 +1,33 @@
-import { careers, counselors, mockUsers, mockSessions } from './mockData';
-
-const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+const BASE_URL = '/api';
 
 export const api = {
     // Auth
     login: async (email, password) => {
-        await delay(500);
-        const user = mockUsers.find(u => u.email === email);
-        if (!user || password !== 'password123') { // Simple mock auth
-            throw new Error('Invalid email or password. Use password123');
+        const res = await fetch(`${BASE_URL}/auth`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'login', email, password })
+        });
+        if (!res.ok) {
+            const err = await res.json();
+            throw new Error(err.error || 'Login failed');
         }
+        const user = await res.json();
         localStorage.setItem('user', JSON.stringify(user));
         return user;
     },
 
     register: async (userData) => {
-        await delay(500);
-        if (mockUsers.some(u => u.email === userData.email)) {
-            throw new Error('Email already exists');
+        const res = await fetch(`${BASE_URL}/auth`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'register', ...userData })
+        });
+        if (!res.ok) {
+            const err = await res.json();
+            throw new Error(err.error || 'Registration failed');
         }
-        const newUser = {
-            id: `u${mockUsers.length + 1}`,
-            role: userData.role || 'student',
-            ...userData
-        };
-        mockUsers.push(newUser);
+        const newUser = await res.json();
         localStorage.setItem('user', JSON.stringify(newUser));
         return newUser;
     },
@@ -40,74 +43,73 @@ export const api = {
 
     // Careers
     getCareers: async (category = 'All', searchQuery = '') => {
-        await delay(400);
-        let filtered = careers;
-        if (category !== 'All') {
-            filtered = filtered.filter(c => c.category === category);
-        }
-        if (searchQuery) {
-            const q = searchQuery.toLowerCase();
-            filtered = filtered.filter(c => c.title.toLowerCase().includes(q) || c.description.toLowerCase().includes(q));
-        }
-        return filtered;
+        const params = new URLSearchParams();
+        if (category !== 'All') params.append('category', category);
+        if (searchQuery) params.append('search', searchQuery);
+        
+        const res = await fetch(`${BASE_URL}/careers?${params.toString()}`);
+        if (!res.ok) throw new Error('Failed to fetch careers');
+        return await res.json();
     },
 
     getRecommendedCareers: async (interests = []) => {
-        await delay(300);
-        if (!interests || interests.length === 0) return careers.slice(0, 3);
-        return careers.filter(c => interests.includes(c.category)).slice(0, 3);
+        // Just fetch all and slice for simplicity
+        const res = await fetch(`${BASE_URL}/careers`);
+        const all = await res.json();
+        if (!interests || interests.length === 0) return all.slice(0, 3);
+        return all.filter(c => interests.includes(c.category)).slice(0, 3);
     },
 
     addCareer: async (career) => {
-        await delay(500);
-        const newCareer = { id: `c${careers.length + 1}`, ...career };
-        careers.push(newCareer);
-        return newCareer;
+        const res = await fetch(`${BASE_URL}/careers`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(career)
+        });
+        if (!res.ok) throw new Error('Failed to add career');
+        return await res.json();
     },
 
     deleteCareer: async (id) => {
-        await delay(400);
-        const index = careers.findIndex(c => c.id === id);
-        if (index > -1) careers.splice(index, 1);
+        const res = await fetch(`${BASE_URL}/careers?id=${id}`, { method: 'DELETE' });
+        if (!res.ok) throw new Error('Failed to delete career');
         return true;
     },
 
     // Counselors
     getCounselors: async () => {
-        await delay(300);
-        return counselors;
+        const res = await fetch(`${BASE_URL}/counselors`);
+        if (!res.ok) throw new Error('Failed to fetch counselors');
+        return await res.json();
     },
 
     // Sessions
     getSessionsByUser: async (userId) => {
-        await delay(400);
-        return mockSessions.filter(s => s.userId === userId);
+        const res = await fetch(`${BASE_URL}/sessions?userId=${userId}`);
+        if (!res.ok) throw new Error('Failed to fetch sessions');
+        return await res.json();
     },
 
     getAllSessions: async () => {
-        await delay(400);
-        return mockSessions;
+        const res = await fetch(`${BASE_URL}/sessions`);
+        if (!res.ok) throw new Error('Failed to fetch all sessions');
+        return await res.json();
     },
 
     bookSession: async (sessionData) => {
-        await delay(600);
-        const newSession = {
-            id: `s${mockSessions.length + 1}`,
-            status: 'Upcoming',
-            ...sessionData
-        };
-        mockSessions.push(newSession);
-        return newSession;
+        const res = await fetch(`${BASE_URL}/sessions`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(sessionData)
+        });
+        if (!res.ok) throw new Error('Failed to book session');
+        return await res.json();
     },
 
     // Dashboard Stats (Admin)
     getAdminStats: async () => {
-        await delay(500);
-        return {
-            totalUsers: mockUsers.length,
-            totalSessions: mockSessions.length,
-            totalCareers: careers.length,
-            activeCounselors: counselors.length
-        };
+        const res = await fetch(`${BASE_URL}/admin-stats`);
+        if (!res.ok) throw new Error('Failed to fetch stats');
+        return await res.json();
     }
 };

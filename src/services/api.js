@@ -1,9 +1,9 @@
-const BASE_URL = '/api';
+const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080/api';
 
 export const api = {
     // Auth
     login: async (email, password) => {
-        const res = await fetch(`http://localhost:8080/api/auth`, {
+        const res = await fetch(`${BASE_URL}/auth`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ action: 'login', email, password })
@@ -18,7 +18,7 @@ export const api = {
     },
 
     register: async (userData) => {
-        const res = await fetch(`http://localhost:8080/api/auth`, {
+        const res = await fetch(`${BASE_URL}/auth`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ action: 'register', ...userData })

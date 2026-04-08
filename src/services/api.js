@@ -3,7 +3,7 @@ const BASE_URL = '/api';
 export const api = {
     // Auth
     login: async (email, password) => {
-        const res = await fetch(`${BASE_URL}/auth`, {
+        const res = await fetch(`http://localhost:8080/api/auth`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ action: 'login', email, password })
@@ -18,7 +18,7 @@ export const api = {
     },
 
     register: async (userData) => {
-        const res = await fetch(`${BASE_URL}/auth`, {
+        const res = await fetch(`http://localhost:8080/api/auth`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ action: 'register', ...userData })
